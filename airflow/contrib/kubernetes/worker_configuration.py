@@ -295,10 +295,6 @@ class WorkerConfiguration(LoggingMixin):
         if self.kube_config.logs_volume_subpath:
             volume_mounts[self.logs_volume_name]['subPath'] = self.kube_config.logs_volume_subpath
 
-        if self.kube_config.dags_in_image:
-            del volumes[self.dags_volume_name]
-            del volume_mounts[self.dags_volume_name]
-
         # Get the SSH key from secrets as a volume
         if self.kube_config.git_ssh_key_secret_name:
             volumes[self.git_sync_ssh_secret_volume_name] = {
