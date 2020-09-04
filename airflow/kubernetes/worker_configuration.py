@@ -369,8 +369,9 @@ class WorkerConfiguration(LoggingMixin):
             )
         }
 
-        if self.kube_config.dags_in_image:
-            del volumes[self.dags_volume_name]
+        # CG Hack: keep the volume mapping for mounting other repositories
+        # if self.kube_config.dags_in_image:
+        #     del volume_mounts[self.dags_volume_name]
 
         # Get the SSH key from secrets as a volume
         if self.kube_config.git_ssh_key_secret_name:
